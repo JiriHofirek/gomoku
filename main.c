@@ -80,6 +80,18 @@ int main(int argc, char* argv[]) {
     }
     printf("Board %ix%i alocated\n", size, size);
 
+    // test
+    printboard(board, size);
+    put_stone(board,size, 3, 2);
+    put_stone(board,size, 1, 1);
+    put_stone(board,size, 2, 3);
+    put_stone(board,size, 0, 0);
+    put_stone(board,size, 0, 12);
+    put_stone(board,size, 12, 0);
+    put_stone(board,size, 4, 4);
+    printboard(board, size);
+
+    // TODO game
 
     free(board);
     return EXIT_SUCCESS;

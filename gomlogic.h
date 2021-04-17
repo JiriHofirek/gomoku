@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 #define EMPTY 0
@@ -16,6 +17,15 @@ int *alloc_board(int size);
 
 /*
  * sets cell fo given cordinates to color of player which is on move (beginng with black)
- * returns 1 if the move was winning 0 otherwais
+ * returns 1 if the move was winning, -1 if move is ilegal, 0 otherwais
  */
 int put_stone(int *board, int size, int x, int y);
+
+// 6 - - - - - -
+// 5 - - - - - -
+// 4 - - - - - -
+// 3 - - - - - -
+// 2 - - - - - -
+// 1 - - - - - -
+// . a b c d e f
+void printboard(int *board, int size);
