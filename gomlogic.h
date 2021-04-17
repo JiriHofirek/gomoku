@@ -3,6 +3,8 @@
 #define EMPTY 0
 #define WHITE 1
 #define BLACK 2
+// number of stones in the row whitch is winning
+#define WINNING 5
 
 
 
