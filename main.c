@@ -5,7 +5,7 @@
 #include "gomlogic.h"
 
 #define DELAULT_BOARD_SIZE 15
-#define HELLP "-s    --size    Size of game board.\n" "-h    --hellp    Prints hellp menu.\n"
+#define HELLP "Console Gomoku Game\n" "FLAGS:\n" " -s     --size          Size of game board.\n" " -h     --hellp         Prints hellp menu.\n"
 
 
 
@@ -37,22 +37,40 @@ int main(int argc, char* argv[]) {
                 return EXIT_FAILURE;
             }
             continue;
-
-        } else if (argv[i][1] == 'h') {
+        }
+        if (argv[i][1] == 'h') {
             printf(HELLP);
             // if hellp flag passed no other flags matter
             return EXIT_SUCCESS;
 
-        } else if (argv[i][1] == '-') {
+        }
+        if (argv[i][1] == '-') {
             if (strcmp(argv[i], "--size") == 0) {
-                // TODO
-            } else if (strcmp(argv[i], "--hellp") == 0) {
+                // counter incremented in side clycle
+                // next arg is not expected to be a flag so ti doesn't have to be tested as a flag
+                ++i;
+                if (i >= argc) {
+                    fprintf(stderr,
+                            "error: argument %i is size flag, argument %i is expected\n", i-1, i);
+                    return EXIT_FAILURE;
+                }
+
+                size = atoi(argv[i]);
+                if (size < WINNING) {
+                    fprintf(stderr,
+                            "error: the size of the board (%i) is lower then winning number of stones in the row (%i)\n", size, WINNING);
+                    return EXIT_FAILURE;
+                }
+                continue;
+            }
+            if (strcmp(argv[i], "--hellp") == 0) {
             printf(HELLP);
             // if hellp flag passed no other flags matter
             return EXIT_SUCCESS;
             }
-        }
-        
+        } // end if
+        fprintf(stderr, "error: argument %i is unknowen flag\n", i);
+        return EXIT_FAILURE;
     } // end for
 
     int *board = alloc_board(size);

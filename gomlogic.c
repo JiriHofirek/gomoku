@@ -18,3 +18,18 @@ int *alloc_board(int size) {
 
     return board;
 }
+
+/*
+ * sets cell fo given cordinates to color of player which is on move (beginng with black)
+ * returns 1 if the move was winning 0 otherwais
+ */
+int put_stone(int *board, int size, int x, int y) {
+    static int onmove=BLACK;
+    
+    board[(y-1) * size + x-1] = onmove;
+    
+    // TODO chack if wined
+    
+    onmove = (onmove == BLACK) ? WHITE : BLACK; 
+    return 0;
+}
